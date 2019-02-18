@@ -1,20 +1,21 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
-
-class Home extends Component {
-    render() {
-        return (
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button
-  </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="/">Action</a>
-                    <a className="dropdown-item" href="/">Another action</a>
-                    <a className="dropdown-item" href="/">Something else here</a>
-                </div>
+const Home = () => {
+    return (
+        <div className="container">
+            <div className="jumbotron text-center mt-5">
+                <div><img src="https://pngimage.net/wp-content/uploads/2018/05/darth-vader-face-png.png" alt="darth vader banner" className="img-fluid" style={style.mainImage}></img></div>
+                <h2 className="mt-5">StarQuiz!</h2>
+                <Link to="/game" className="btn btn-outline-dark btn-lg mt-5">Jogar!</Link>
             </div>
-        )
+        </div>
+    )
+}
+
+const style = {
+    mainImage: {
+        maxHeight: 250
     }
 }
 
