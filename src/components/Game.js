@@ -25,7 +25,7 @@ class Game extends Component {
                 <div className="row">
                     {Object.keys(this.state.cards).length > 0 &&
                         this.state.cards.map(card => (
-                            <div key={card.name} className="col-lg-3 col-md-4"><Card card={card} /></div>
+                            <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card} /></div>
                         ))
                     }
                 </div>

@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import GoogleImages from 'google-images';
 import { CSE_ID, API_KEY } from '../utils/googleImages'
+import Details from './Details'
 
 class Card extends Component {
     state = {
-        cardImage: ''
+        cardImage: {
+            thumbnail: '',
+            image: ''
+        }
     }
 
     componentWillMount() {
@@ -12,7 +16,10 @@ class Card extends Component {
         // this.getImageToCard(this.props.card)
         // .then(response => {
         //     this.setState({
-        //         cardImage: response[0].thumbnail.url
+        //         cardImage:{
+        //             thumbnail: response[0].thumbnail.url,
+        //             image: response[0].url
+        //         }
         //     })
         // })
 
@@ -28,33 +35,17 @@ class Card extends Component {
         return (
             <div>
                 <div className="card mb-3" style={{ width: "15em" }}>
-                    <img src={this.state.cardImage} className="card-img-top img-thumbnail" alt="" style={style.cardImage} />
+                    <img src={this.state.cardImage.image} className="card-img-top" alt="" style={style.cardImage} />
                     <div className="card-body">
                         <div className="">
                             <button href="#" className="btn btn-primary btn-block">Advinhar</button>
-                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target="#detailsModal">Exibir Detalhes</button>
+                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`}>Exibir Detalhes</button>
                         </div>
                     </div>
                 </div>
 
                 {/* MODAL */}
-                <div className="modal fade" id="detailsModal" tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
-                    <div className="modal-dialog" role="document">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h5 className="modal-title" id="detailsModalLabel">Detalhes do Personagem</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div className="modal-body">...</div>
-                            <div className="modal-footer">
-                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <Details card={this.props.card} cardImage={this.state.cardImage.image} />
             </div>
         )
     }
