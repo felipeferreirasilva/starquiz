@@ -1,20 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { LOGO } from '../utils/images'
 
 const Home = () => {
     return (
-        <div className="container">
-            <div className="jumbotron text-center mt-5">
-                <div><img src="https://pngimage.net/wp-content/uploads/2018/05/darth-vader-face-png.png" alt="darth vader banner" className="img-fluid" style={style.mainImage}></img></div>
+        <div className="container-fluid">
+            <div className="jumbotron text-center">
+                <div><img src={LOGO} alt="darth vader banner" className="img-fluid" style={style.logo}></img></div>
                 <h2 className="mt-5">StarQuiz!</h2>
-                <Link to="/game" className="btn btn-outline-dark btn-lg mt-5">Jogar!</Link>
+                <Link to="/game" className="btn btn-outline-dark btn-lg mt-3">Jogar!</Link>
             </div>
         </div>
     )
 }
 
 const style = {
-    mainImage: {
+    logo: {
         maxHeight: 250
     }
 }

@@ -1,10 +1,14 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Home from './Home'
+import Game from './Game'
 
 const Routes = () => {
     return (
-        <Route exact path="/" component={Home} />
+        <div>
+            <Route exact path="/" component={Home} />
+            <Route path="/game" component={Game} />
+        </div>
     )
 }
 
