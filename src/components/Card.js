@@ -13,7 +13,8 @@ class Card extends Component {
         },
         userGuess: '',
         showInput: false,
-        cardVisibility: 'visible'
+        cardVisibility: 'visible',
+        clickedDetails: false
     }
 
     // REQUISITA AS IMAGENS DOS CARTOES
@@ -43,14 +44,19 @@ class Card extends Component {
     }
 
     // FUNÇAO É CHAMADA APÓS O USUARIO CLICAR EM OK NO INPUT DO PALPITE
-    // ATUALIZA A STORE COM A PONTUAÇAO
+    // ATUALIZA A STORE COM A PONTUAÇAO (10 PONTOS CASO NAO TENHA CLICADO EM DETALHES E 5 CASO TENHA)
     // ESCONDE O CARTAO PARA QUE O USUARIO NAO JOGUE NOVAMENTE COM O MESMO CARTAO
     onPressSendGuess = () => {
         let userGuess = this.state.userGuess.toUpperCase()
         let cardName = this.props.card.name.toUpperCase()
+        let clickedDetails = this.state.clickedDetails
         if (userGuess !== '') {
             if (cardName === userGuess) {
-                this.props.dispatch(updateScore(30))
+                if (clickedDetails) {
+                    this.props.dispatch(updateScore(5))
+                } else {
+                    this.props.dispatch(updateScore(10))
+                }
             }
 
             this.setState({
@@ -64,6 +70,12 @@ class Card extends Component {
     onChangeGuess = event => {
         this.setState({
             userGuess: event.target.value
+        })
+    }
+
+    onClickDetails = () => {
+        this.setState({
+            clickedDetails: true
         })
     }
 
@@ -86,8 +98,8 @@ class Card extends Component {
                             ) : (
                                     <button href="#" className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
                                 )}
-                            {/* CRIA UM ID PRA O MODAL UTILIZANDO  A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID */}
-                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`}>Detalhes</button>
+                            {/* CRIA UM ID PRA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID */}
+                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`} onClick={this.onClickDetails}>Detalhes</button>
                         </div>
                     </div>
                 </div>
