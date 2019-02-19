@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
+import Spinner from './Spinner'
 
 class Details extends Component {
     state = {
@@ -8,7 +9,9 @@ class Details extends Component {
         hair: '',
         homeworld: '',
         films: [],
-        vehicles: []
+        vehicles: [],
+        // INICIA O COMPONENTE COM O LOADING EM TRUE
+        loading: true
     }
 
     // REQUISITA OS DETALHES DE CADA PERSONAGEM
@@ -49,20 +52,6 @@ class Details extends Component {
             })
     }
 
-    // REQUISITA OS FILMES DO PERSONAGEM
-    onGetFilms = card => {
-        card.films.map(film => (
-            axios.get(film)
-                .then(response => {
-                    let newFilms = this.state.films
-                    newFilms.push(response.data.title)
-                    this.setState({
-                        films: newFilms
-                    })
-                })
-        ))
-    }
-
     // REQUISITA OS VEICULOS DO PERSONAGEM
     onGetVehicles = card => {
         card.vehicles.map(vehicle => (
@@ -73,34 +62,56 @@ class Details extends Component {
                     this.setState({
                         vehicles: newVehicles
                     })
+                })
+        ))
+    }
 
+    // REQUISITA OS FILMES DO PERSONAGEM
+    onGetFilms = card => {
+        card.films.map(film => (
+            axios.get(film)
+                .then(response => {
+                    let newFilms = this.state.films
+                    newFilms.push(response.data.title)
+                    this.setState({
+                        films: newFilms,
+                        // FINALIZA O LOADING AO CARREGAR A REQUISIÇAO MAIS PESADA (ARRAY DE FILMES)
+                        loading: false
+                    })
                 })
         ))
     }
 
     render() {
         return (
-            // CRIA UM ID PARA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID
-            <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="detailsModalLabel">Detalhes do Personagem</h5>
+            <div>
+                {/* VERIFICA SE O LOADING ESTA ATIVO E EXIBE O SPINNER */}
+                {this.state.loading ? (
+                    <Spinner />
+                ) : (
+                        // CRIA UM ID PARA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID
+                        <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                            <div className="modal-dialog" role="document">
+                                <div className="modal-content">
+                                    <div className="modal-header">
+                                        <h5 className="modal-title" id="detailsModalLabel">Detalhes do Personagem</h5>
+                                    </div>
+                                    <div className="modal-body">
+                                        <img src={this.props.cardImage} className="card-img-top img-thumbnail mb-3" alt="" style={style.cardImage} />
+                                        <h6><strong>Especie: </strong>{this.state.species.map(specie => <span key={specie}>{specie}, </span>)}</h6>
+                                        <h6><strong>Altura: </strong>{this.state.height}</h6>
+                                        <h6><strong>Cabelo: </strong>{this.state.hair}</h6>
+                                        <h6><strong>Planeta: </strong>{this.state.homeworld}</h6>
+                                        <h6><strong>Filmes: </strong>{this.state.films.map(film => <span key={film}>{film}, </span>)}</h6>
+                                        <h6><strong>Veiculos: </strong>{this.state.vehicles.map(vehicle => <span key={vehicle}>{vehicle}, </span>)}</h6>
+                                    </div>
+                                    <div className="modal-footer">
+                                        <button type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="modal-body">
-                            <img src={this.props.cardImage} className="card-img-top img-thumbnail mb-3" alt="" style={style.cardImage} />
-                            <h6><strong>Especie: </strong>{this.state.species.map(specie => <span key={specie}>{specie}, </span>)}</h6>
-                            <h6><strong>Altura: </strong>{this.state.height}</h6>
-                            <h6><strong>Cabelo: </strong>{this.state.hair}</h6>
-                            <h6><strong>Planeta: </strong>{this.state.homeworld}</h6>
-                            <h6><strong>Filmes: </strong>{this.state.films.map(film => <span key={film}>{film}, </span>)}</h6>
-                            <h6><strong>Veiculos: </strong>{this.state.vehicles.map(vehicle => <span key={vehicle}>{vehicle}, </span>)}</h6>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
+                    )}
             </div>
         )
     }

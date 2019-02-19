@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import GoogleImages from 'google-images';
 import { CSE_ID, API_KEY } from '../utils/googleImages'
-import Details from './Details'
 import { connect } from 'react-redux'
 import { updateScore } from '../actions'
+import Details from './Details'
+import Spinner from './Spinner'
 
 class Card extends Component {
     state = {
@@ -14,26 +15,30 @@ class Card extends Component {
         userGuess: '',
         showInput: false,
         cardVisibility: 'visible',
-        clickedDetails: false
+        clickedDetails: false,
+        // INICIA O COMPONENTE COM O LOADING EM TRUE
+        loading: true
     }
 
     // REQUISITA AS IMAGENS DOS CARTOES
     componentDidMount() {
-        // this.getImageToCard(this.props.card)
-        // .then(response => {
-        //     this.setState({
-        //         cardImage:{
-        //             thumbnail: response[0].thumbnail.url,
-        //             image: response[0].url
-        //         }
-        //     })
-        // })
+        this.getImageToCard(this.props.card)
     }
 
     // UTILIZA API DO GOOGLE PARA PESQUISAR E RETORNAR IMAGENS
     getImageToCard = card => {
         const client = new GoogleImages(CSE_ID, API_KEY);
-        return client.search(`${card.name} star wars`)
+        client.search(`${card.name} star wars`)
+            .then(response => {
+                this.setState({
+                    cardImage: {
+                        thumbnail: response[0].thumbnail.url,
+                        image: response[0].url
+                    },
+                    // FINALIZA O LOADING AO CARREGAR TODAS AS IMAGENS DOS CARTOES
+                    loading: false
+                })
+            })
     }
 
     // EXIBE O INPUT PARA DIGITAR O PALPITE DO USUARIO
@@ -58,7 +63,6 @@ class Card extends Component {
                     this.props.dispatch(updateScore(10))
                 }
             }
-
             this.setState({
                 showInput: false,
                 cardVisibility: 'hidden'
@@ -73,6 +77,7 @@ class Card extends Component {
         })
     }
 
+    // VERIFICA SE O JOGAR CLICOU EM EXIBIR OS DETALHES DO CARTAO (PERDE 5 PONTOS)
     onClickDetails = () => {
         this.setState({
             clickedDetails: true
@@ -82,30 +87,37 @@ class Card extends Component {
     render() {
         return (
             <div>
-                {/* OBSERVA O STATE cardVisibility PARA MOSTRAR OU ESCONDER O CARTAO */}
-                <div className="card container mb-3 view overlay zoom" style={{ width: "16em", visibility: `${this.state.cardVisibility}` }}>
-                    <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
-                    <div className="card-body">
-                        <div className="">
-                            {/* EXIBE O INPUT DE PALPITE QUANDO O USUARIO CLICA EM ADVINHAR */}
-                            {this.state.showInput ? (
-                                <div className="input-group mb-3">
-                                    <input type="text" className="form-control" placeholder="Nome" value={this.state.userGuess} onChange={event => this.onChangeGuess(event)} />
-                                    <div className="input-group-append">
-                                        <button className="input-group-text btn-dark" onClick={this.onPressSendGuess}>Ok</button>
+                {/* VERIFICA SE O LOADING ESTA ATIVO E EXIBE O SPINNER */}
+                {this.state.loading ? (
+                    <Spinner />
+                ) : (
+                        <div>
+                            {/* OBSERVA O STATE cardVisibility PARA MOSTRAR OU ESCONDER O CARTAO */}
+                            <div className="card container mb-3 view overlay zoom" style={{ width: "16em", visibility: `${this.state.cardVisibility}` }}>
+                                <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
+                                <div className="card-body">
+                                    <div className="">
+                                        {/* EXIBE O INPUT DE PALPITE QUANDO O USUARIO CLICA EM ADVINHAR */}
+                                        {this.state.showInput ? (
+                                            <div className="input-group mb-3">
+                                                <input type="text" className="form-control" placeholder="Nome" value={this.state.userGuess} onChange={event => this.onChangeGuess(event)} />
+                                                <div className="input-group-append">
+                                                    <button className="input-group-text btn-dark" onClick={this.onPressSendGuess}>Ok</button>
+                                                </div>
+                                            </div>
+                                        ) : (
+                                                <button href="#" className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
+                                            )}
+                                        {/* CRIA UM ID PRA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID */}
+                                        <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`} onClick={this.onClickDetails}>Detalhes</button>
                                     </div>
                                 </div>
-                            ) : (
-                                    <button href="#" className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
-                                )}
-                            {/* CRIA UM ID PRA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID */}
-                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`} onClick={this.onClickDetails}>Detalhes</button>
-                        </div>
-                    </div>
-                </div>
+                            </div>
 
-                {/* MODAL DETALHES */}
-                <Details card={this.props.card} cardImage={this.state.cardImage.image} />
+                            {/* MODAL DETALHES */}
+                            <Details card={this.props.card} cardImage={this.state.cardImage.image} />
+                        </div>
+                    )}
             </div>
         )
     }

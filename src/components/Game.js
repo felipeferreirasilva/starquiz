@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { URL } from '../utils/api'
-import Card from './Card'
 import { connect } from 'react-redux'
-import Timer from '../components/Timer'
-import GameOver from '../components/GameOver'
+import Card from './Card'
+import Timer from './Timer'
+import GameOver from './GameOver'
+import Spinner from './Spinner'
 
 class Game extends Component {
     state = {
         cards: {},
         nextPage: null,
-        previousPage: null
+        previousPage: null,
+        // INICIA O COMPONENT COM O LOADING EM TRUE
+        loading: true
     }
 
     // REQUISITA OS 10 PRIMEIROS PERSONAGENS CADASTRADOS NA API
@@ -45,40 +48,49 @@ class Game extends Component {
                 this.setState({
                     cards: response.data.results,
                     nextPage: response.data.next,
-                    previousPage: response.data.previous
+                    previousPage: response.data.previous,
+                    // FINALIZA O LOADING AO CARREGAR OS CARTOES INICIAIS
+                    loading: false
                 })
             })
     }
 
-
     render() {
         return (
             <div>
-                <Timer />
-                {/* SE O STATUS DO JOGO FOR TRUE, (TEMPO DISPONIVEL) EXIBE OS CARTOES */}
-                {this.props.game.status ? (
-                    <div className="container-fluid">
-                        <hr />
-                        <div className="row">
-                            {Object.keys(this.state.cards).length > 0 &&
-                                this.state.cards.map(card => (
-                                    <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card} /></div>
-                                ))
-                            }
-                        </div>
-                        <hr />
-                        <nav>
-                            <ul className="pagination justify-content-center pagination-lg">
-                                <li className={`page-item ${this.state.previousPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickPreviousPage}>Anterior</button></li>
-                                <li className={`page-item ${this.state.nextPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickNextPage}>Proximo</button></li>
-                            </ul>
-                        </nav>
-
-                    </div>
-                    // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O COMPONENT GAMEOVER
+                {/* VERIFICA SE O LOADING ESTA ATIVO E EXIBE O SPINNER */}
+                {this.state.loading ? (
+                    <Spinner />
                 ) : (
-                        <GameOver score={this.props.game.score} history={this.props.history}/>
-                    )}
+                        <div>
+                            <Timer />
+                            {/* SE O STATUS DO JOGO FOR TRUE, (TEMPO DISPONIVEL) EXIBE OS CARTOES */}
+                            {this.props.game.status ? (
+                                <div className="container-fluid">
+                                    <hr />
+                                    <div className="row">
+                                        {Object.keys(this.state.cards).length > 0 &&
+                                            this.state.cards.map(card => (
+                                                <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card}/></div>
+                                            ))
+                                        }
+                                    </div>
+                                    <hr />
+                                    <nav>
+                                        <ul className="pagination justify-content-center pagination-lg">
+                                            <li className={`page-item ${this.state.previousPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickPreviousPage}>Anterior</button></li>
+                                            <li className={`page-item ${this.state.nextPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickNextPage}>Proximo</button></li>
+                                        </ul>
+                                    </nav>
+
+                                </div>
+                                // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O COMPONENT GAMEOVER
+                            ) : (
+                                    <GameOver score={this.props.game.score} history={this.props.history} />
+                                )}
+                        </div>
+                    )
+                }
             </div>
         )
     }
