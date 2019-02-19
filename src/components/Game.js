@@ -77,7 +77,7 @@ class Game extends Component {
                     </div>
                     // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O COMPONENT GAMEOVER
                 ) : (
-                        <GameOver score={this.props.game.score} />
+                        <GameOver score={this.props.game.score} history={this.props.history}/>
                     )}
             </div>
         )

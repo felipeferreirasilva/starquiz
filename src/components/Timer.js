@@ -21,7 +21,7 @@ const Timer = props => {
                     <FontAwesomeIcon icon={faStopwatch} size="2x" />
                     <h3 className="float-right ml-2">
                         {/* TIMER QUE APOS 2 MINUTOS (120000) RETORNA UMA FUNÇAO */}
-                        <Countdown date={Date.now() + 5000} renderer={({ minutes, seconds }) => { return <span>{minutes}:{seconds}</span> }} onComplete={updateGameStatus} />
+                        <Countdown date={Date.now() + 120000} renderer={({ minutes, seconds }) => { return <span>{minutes}:{seconds}</span> }} onComplete={updateGameStatus} />
                     </h3>
                 </div>
             }

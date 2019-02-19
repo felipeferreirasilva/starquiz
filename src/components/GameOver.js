@@ -16,6 +16,7 @@ class GameOver extends Component {
                 localStorage.setItem('players', JSON.stringify([]))
                 this.addPlayerToLocalStorage()
             }
+            this.props.history.push('/ranking')
         }   
     }
 
@@ -53,14 +54,14 @@ class GameOver extends Component {
                         <img src="http://i.imgur.com/vXzudMx.jpg" className="img-fluid" alt="" />
                     </div>
                     <div className="card-body text-center mb-3">
-                        <h3 className="card-title h3 my-4"><strong>Fim de Jogo</strong></h3>
-                        <h4 className="card-text py-2">Placar: <strong>{this.props.score}</strong> pontos</h4>
-                        <div className="text-center border border-light p-5 container">
-                            <p>Preencha o formulario abaixo para salvar sua pontuação.</p>
+                        <h3 className="card-title h3 mt-3 mb-3"><strong>Fim de Jogo</strong></h3>
+                        <h4 className="card-text mt-2 mb-4">Placar: <strong>{this.props.score}</strong> pontos</h4>
+                        <div className="text-center border border-light p-4 container">
+                            <p>Preencha o formulário abaixo para salvar sua pontuação.</p>
                             <input type="text" className="form-control mb-4" placeholder="Nome" onChange={event => this.onChangeName(event)} required/>
                             <input type="email" className="form-control mb-4" placeholder="E-mail" onChange={event => this.onChangeEmail(event)}/>
                             <button className="btn btn-dark btn-block" onClick={this.onSaveScore}>Salvar</button>
-                            <Link to="/" className="btn btn-light btn-block mt-2">Voltar</Link>
+                            <Link to="/" className="btn btn-light btn-block mt-2">Fechar</Link>
                         </div>
                     </div>
                 </div>
