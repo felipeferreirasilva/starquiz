@@ -15,7 +15,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="container-fluid mt-4">
+            <div className="container-fluid">
                 <div className="text-center">
                     <div><img src={LOGO} alt="darth vader banner" className="img-fluid mt-3 animated zoomIn" style={style.logo}></img></div>
                     <h2 className="mt-5">StarQuiz!</h2>

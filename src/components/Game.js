@@ -4,6 +4,7 @@ import { URL } from '../utils/api'
 import Card from './Card'
 import { connect } from 'react-redux'
 import Timer from '../components/Timer'
+import GameOver from '../components/GameOver'
 
 class Game extends Component {
     state = {
@@ -49,7 +50,7 @@ class Game extends Component {
             })
     }
 
-    
+
     render() {
         return (
             <div>
@@ -74,12 +75,9 @@ class Game extends Component {
                         </nav>
 
                     </div>
-                    // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O RESULTADO
+                    // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O COMPONENT GAMEOVER
                 ) : (
-                        <div className="container">
-                            <h1>Jogo encerrado!</h1>
-                            <h3>Score: {this.props.game.score}</h3>
-                        </div>
+                        <GameOver score={this.props.game.score} />
                     )}
             </div>
         )
