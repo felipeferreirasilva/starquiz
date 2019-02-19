@@ -84,19 +84,19 @@ class Details extends Component {
 
     render() {
         return (
-            <div>
-                {/* VERIFICA SE O LOADING ESTA ATIVO E EXIBE O SPINNER */}
-                {this.state.loading ? (
-                    <Spinner />
-                ) : (
-                        // CRIA UM ID PARA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID
-                        <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
-                            <div className="modal-dialog" role="document">
-                                <div className="modal-content">
-                                    <div className="modal-header">
-                                        <h5 className="modal-title" id="detailsModalLabel">Detalhes do Personagem</h5>
-                                    </div>
-                                    <div className="modal-body">
+            // CRIA UM ID PARA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID
+            <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="detailsModalLabel">Detalhes do Personagem</h5>
+                        </div>
+                        <div className="modal-body">
+                            {/* VERIFICA SE O LOADING ESTA ATIVO E EXIBE O SPINNER */}
+                            {this.state.loading ? (
+                                <Spinner />
+                            ) : (
+                                    <div>
                                         <img src={this.props.cardImage} className="card-img-top img-thumbnail mb-3" alt="" style={style.cardImage} />
                                         <h6><strong>Especie: </strong>{this.state.species.map(specie => <span key={specie}>{specie}, </span>)}</h6>
                                         <h6><strong>Altura: </strong>{this.state.height}</h6>
@@ -105,13 +105,13 @@ class Details extends Component {
                                         <h6><strong>Filmes: </strong>{this.state.films.map(film => <span key={film}>{film}, </span>)}</h6>
                                         <h6><strong>Veiculos: </strong>{this.state.vehicles.map(vehicle => <span key={vehicle}>{vehicle}, </span>)}</h6>
                                     </div>
-                                    <div className="modal-footer">
-                                        <button type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
+                                )}
                         </div>
-                    )}
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }
