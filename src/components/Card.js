@@ -39,22 +39,35 @@ class Card extends Component {
         })
     }
 
+    onPressSendGuess = () => {
+        console.log(this.state.userGuess)
+        this.setState({
+            showInput: false
+        })
+    }
+
+    onChangeGuess = event => {
+        this.setState({
+            userGuess: event.target.value
+        })
+    }
+
     render() {
         return (
             <div>
-                <div className="card container mb-3" style={{ width: "15em" }}>
-                    <img src={this.state.cardImage.image} className="card-img-top mt-2" alt="" style={style.cardImage} />
+                <div className="card container mb-3 view overlay zoom" style={{ width: "16em" }}>
+                    <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
                     <div className="card-body">
                         <div className="">
                             {this.state.showInput ? (
                                 <div className="input-group mb-3">
-                                    <input type="text" className="form-control" placeholder="Nome" />
+                                    <input type="text" className="form-control" placeholder="Nome" value={this.state.userGuess} onChange={event => this.onChangeGuess(event)} />
                                     <div className="input-group-append">
-                                        <button className="input-group-text btn-dark" onClick={() => console.log('salvo')}>Ok</button>
+                                        <button className="input-group-text btn-dark" onClick={this.onPressSendGuess}>Ok</button>
                                     </div>
                                 </div>
                             ) : (
-                                    <button href="#" className="btn btn-primary btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
+                                    <button href="#" className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
                                 )}
                             <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`}>Detalhes</button>
                         </div>
@@ -70,8 +83,8 @@ class Card extends Component {
 
 const style = {
     cardImage: {
-        maxWeight: 100,
-        maxHeight: 150
+        maxWeight: 110,
+        maxHeight: 110
     }
 }
 

@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 class Details extends Component {
-
     state = {
         species: [],
         height: '',
@@ -22,6 +21,7 @@ class Details extends Component {
             height: this.props.card.height,
             hair: this.props.card.hair_color
         })
+
     }
 
     onGetSpecies = card => {
@@ -68,12 +68,12 @@ class Details extends Component {
                     this.setState({
                         vehicles: newVehicles
                     })
+
                 })
         ))
     }
 
     render() {
-        console.log(this.props.card)
         return (
             <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
@@ -91,7 +91,7 @@ class Details extends Component {
                             <h6><strong>Veiculos: </strong>{this.state.vehicles.map(vehicle => <span key={vehicle}>{vehicle}, </span>)}</h6>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-primary" data-dismiss="modal">Close</button>
+                            <button type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>

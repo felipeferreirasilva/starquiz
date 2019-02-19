@@ -16,7 +16,7 @@ class Home extends Component {
                 <div className="text-center">
                     <div><img src={LOGO} alt="darth vader banner" className="img-fluid mt-3 animated zoomIn" style={style.logo}></img></div>
                     <h2 className="mt-5">StarQuiz!</h2>
-                    <Link to="/game" className="btn btn-outline-dark btn-lg mt-3" onClick={this.onClickStart}>Jogar!</Link>
+                    <Link to="/game" className="btn btn-light btn-lg mt-3" onClick={this.onClickStart}>Jogar!</Link>
                 </div>
             </div>
         )

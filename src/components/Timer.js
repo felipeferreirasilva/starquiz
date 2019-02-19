@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { gameStatus } from '../actions'
 
 const Timer = props => {
+    // FUNÇAO É CHAMADA APÓS O TERMINO DO CONTADOR
     const updateGameStatus = () => {
         props.dispatch(gameStatus(false))
         console.log('Game Finalizado')
@@ -15,10 +16,10 @@ const Timer = props => {
         <div>
             {props.game.status &&
                 <div className="text-right mr-5 mt-2 animated slideInRight">
+                <h4 className="text-right">Tempo</h4>
                     <FontAwesomeIcon icon={faStopwatch} size="2x" />
                     <h3 className="float-right ml-2">
                         <Countdown date={Date.now() + 120000} renderer={({ minutes, seconds }) => { return <span>{minutes}:{seconds}</span> }} onComplete={updateGameStatus} />
-                        {/* 120000 */}
                     </h3>
                 </div>
             }
