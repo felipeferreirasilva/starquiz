@@ -8,7 +8,9 @@ class Card extends Component {
         cardImage: {
             thumbnail: '',
             image: ''
-        }
+        },
+        userGuess: '',
+        showInput: false
     }
 
     componentWillMount() {
@@ -31,15 +33,30 @@ class Card extends Component {
         return client.search(card.name)
     }
 
+    onPressGuess = () => {
+        this.setState({
+            showInput: true
+        })
+    }
+
     render() {
         return (
             <div>
-                <div className="card mb-3" style={{ width: "15em" }}>
-                    <img src={this.state.cardImage.image} className="card-img-top" alt="" style={style.cardImage} />
+                <div className="card container mb-3" style={{ width: "15em" }}>
+                    <img src={this.state.cardImage.image} className="card-img-top mt-2" alt="" style={style.cardImage} />
                     <div className="card-body">
                         <div className="">
-                            <button href="#" className="btn btn-primary btn-block">Advinhar</button>
-                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`}>Exibir Detalhes</button>
+                            {this.state.showInput ? (
+                                <div className="input-group mb-3">
+                                    <input type="text" className="form-control" placeholder="Nome" />
+                                    <div className="input-group-append">
+                                        <button className="input-group-text btn-dark" onClick={() => console.log('salvo')}>Ok</button>
+                                    </div>
+                                </div>
+                            ) : (
+                                    <button href="#" className="btn btn-primary btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
+                                )}
+                            <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`}>Detalhes</button>
                         </div>
                     </div>
                 </div>

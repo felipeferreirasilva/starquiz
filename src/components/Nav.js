@@ -4,8 +4,8 @@ import { LOGO } from '../utils/images'
 
 const Nav = () => {
     return (
-        <nav className="navbar navbar-expand-md navbar-light bg-light mb-3">
-            <Link className="navbar-brand" to="/"><img src={LOGO} alt="" className="img-fluid" style={style.logo}></img></Link>
+        <nav className="navbar navbar-expand-md navbar-light bg-light mb-3 animated slideInDown">
+            <Link className="navbar-brand" to="/"><img src={LOGO} alt="" className="img-fluid" style={style.logo}></img><span className="ml-2"><strong>StarQuiz</strong></span></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
@@ -15,7 +15,10 @@ const Nav = () => {
                         <Link className="nav-link" to="/">Inicio <span className="sr-only">(current)</span></Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/about">Sobre</Link>
+                        <Link className="nav-link" to="/sobre">Sobre</Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/placar">Placar</Link>
                     </li>
                 </ul>
             </div>
