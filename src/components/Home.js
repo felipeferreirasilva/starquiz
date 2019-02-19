@@ -2,12 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { LOGO } from '../utils/images'
 import { connect } from 'react-redux'
-import { gameStatus } from '../actions'
+import { gameStatus, resetScore } from '../actions'
 
 class Home extends Component {
 
+    // MUDA O STATUS DO JOGO PARA TRUE (INICIA CONTADOR DE TEMPO)
+    // RESETA O SCORE PARA ZERO CASO O JOGADOR JA TENHA JOGADO NA MESMA SESSAO
     onClickStart = () => {
         this.props.dispatch(gameStatus(true))
+        this.props.dispatch(resetScore())
     }
 
     render() {

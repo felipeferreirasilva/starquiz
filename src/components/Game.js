@@ -13,7 +13,7 @@ class Game extends Component {
     }
 
     // REQUISITA OS 10 PRIMEIROS PERSONAGENS CADASTRADOS NA API
-    componentWillMount() {
+    componentDidMount() {
         if (this.props.game.status) {
             this.getCards(URL)
         } else {
@@ -21,6 +21,7 @@ class Game extends Component {
         }
     }
 
+    // REQUISITA OS 10 PERSONAGEM DA PROXIMA PAGINA PASSANDO A URL ARMAZENADA NO STATE nextPage
     onClickNextPage = () => {
         let nextPage = this.state.nextPage
         if (nextPage !== null) {
@@ -28,6 +29,7 @@ class Game extends Component {
         }
     }
 
+    // REQUISITA OS 10 PERSONAGEM DA PAGINA ANTERIOR PASSANDO A URL ARMAZENADA NO STATE previousPage
     onClickPreviousPage = () => {
         let previousPage = this.state.previousPage
         if (previousPage !== null) {
@@ -35,6 +37,7 @@ class Game extends Component {
         }
     }
 
+    // REQUISITA OS PERSONAGENS A API STARWARS
     getCards = (url) => {
         axios.get(url)
             .then(response => {
@@ -46,11 +49,12 @@ class Game extends Component {
             })
     }
 
+    
     render() {
         return (
             <div>
                 <Timer />
-                {/* VERIFICA O STATUS DO JOGO (TEMPO VALIDO) E EXIBE OS CARDS OU RESULTADO FINAL */}
+                {/* SE O STATUS DO JOGO FOR TRUE, (TEMPO DISPONIVEL) EXIBE OS CARTOES */}
                 {this.props.game.status ? (
                     <div className="container-fluid">
                         <hr />
@@ -70,9 +74,11 @@ class Game extends Component {
                         </nav>
 
                     </div>
+                    // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O RESULTADO
                 ) : (
                         <div className="container">
                             <h1>Jogo encerrado!</h1>
+                            <h3>Score: {this.props.game.score}</h3>
                         </div>
                     )}
             </div>

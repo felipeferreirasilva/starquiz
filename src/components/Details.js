@@ -11,7 +11,8 @@ class Details extends Component {
         vehicles: []
     }
 
-    componentWillMount() {
+    // REQUISITA OS DETALHES DE CADA PERSONAGEM
+    componentDidMount() {
         let card = this.props.card
         this.onGetSpecies(card)
         this.onGetHomeWorld(card)
@@ -24,6 +25,7 @@ class Details extends Component {
 
     }
 
+    // REQUISITA AS ESPECIES DO PERSONAGEM
     onGetSpecies = card => {
         card.species.map(specie => (
             axios.get(specie)
@@ -37,6 +39,7 @@ class Details extends Component {
         ))
     }
 
+    // REQUISITA O PLANETA DO PERSONAGEM
     onGetHomeWorld = card => {
         axios.get(card.homeworld)
             .then(response => {
@@ -46,6 +49,7 @@ class Details extends Component {
             })
     }
 
+    // REQUISITA OS FILMES DO PERSONAGEM
     onGetFilms = card => {
         card.films.map(film => (
             axios.get(film)
@@ -59,6 +63,7 @@ class Details extends Component {
         ))
     }
 
+    // REQUISITA OS VEICULOS DO PERSONAGEM
     onGetVehicles = card => {
         card.vehicles.map(vehicle => (
             axios.get(vehicle)
@@ -75,6 +80,7 @@ class Details extends Component {
 
     render() {
         return (
+            // CRIA UM ID PARA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID
             <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">

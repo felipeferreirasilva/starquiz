@@ -1,7 +1,11 @@
-// IMPORT MDBOOTSTRAP AND JQUERY
+// IMPORTA O MDBOOTSTRAP
 import 'mdbootstrap/css/bootstrap.min.css'
 import 'mdbootstrap/css/mdb.min.css'
+
+// IMPORTA O JQUERY
 import 'bootstrap/dist/js/bootstrap.bundle.min';
+
+// IMPORTA O CUSTOM CSS
 import './index.css'
 
 import React from 'react';
