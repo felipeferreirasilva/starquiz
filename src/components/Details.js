@@ -21,11 +21,22 @@ class Details extends Component {
         this.onGetHomeWorld(card)
         this.onGetFilms(card)
         this.onGetVehicles(card)
-        this.setState({
-            height: this.props.card.height,
-            hair: this.props.card.hair_color
-        })
+        this.onSetHeight(card.height)
+        this.onSetHair(card.hair)
+    }
 
+    // ATUALIZA O STATE COM O PROP RECEBIDO
+    onSetHeight = height => {
+        this.setState({
+            height
+        })
+    }
+
+    // ATUALIZA O STATE COM O PROP RECEBIDO
+    onSetHair = hair => {
+        this.setState({
+            hair
+        })
     }
 
     // REQUISITA AS ESPECIES DO PERSONAGEM
