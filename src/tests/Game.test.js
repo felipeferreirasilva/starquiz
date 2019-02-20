@@ -19,7 +19,6 @@ describe('<Game />', () => {
     const history = createMemoryHistory('/')
 
     beforeEach(() => {
-        // PROPS QUE VAO NO LIFE CYCLE / STORE
         wrapper = shallow(<Game game={{ status: true, score: 0 }} history={history} />)
     })
 
@@ -38,9 +37,9 @@ describe('<Game />', () => {
         expect(wrapper.find(Card).length).toBe(1)
     })
 
-    it('RENDER 2 BOTOES QUANDO state.loading=false E props.game.status=true E state.cards > 0', () => {
+    it('RENDER BOTOES QUANDO state.loading=false E props.game.status=true E state.cards > 0', () => {
         wrapper.setState({ loading: false, cards: [{ name: 'card' }] })
-        expect(wrapper.find('button').length).toBe(2)
+        expect(wrapper.find('button').length).toBe(1)
     })
 
     it('RENDER GAMEOVER QUANDO state.loading=false E props.game.status=false', () => {
