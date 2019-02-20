@@ -52,6 +52,9 @@ export class Game extends Component {
                     loadingMoreCardsNewClasses: ''
                 })
             })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
