@@ -17,7 +17,7 @@ export class Card extends Component {
         clickedDetails: false,
         newClasses: '',
         // INICIA O COMPONENTE COM O LOADING EM TRUE
-        loading: false
+        loading: true
     }
 
     // REQUISITA AS IMAGENS DOS CARTOES
