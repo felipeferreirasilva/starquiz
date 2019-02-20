@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Regular.2751ee43.woff2"
   },
   {
-    "revision": "30bf44754a87a6b0ce34",
+    "revision": "295e68f8948424b99348",
     "url": "/starquiz/static/css/main.dcf73744.chunk.css"
   },
   {
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Light.69f8a061.woff2"
   },
   {
-    "revision": "30bf44754a87a6b0ce34",
-    "url": "/starquiz/static/js/main.30bf4475.chunk.js"
+    "revision": "295e68f8948424b99348",
+    "url": "/starquiz/static/js/main.295e68f8.chunk.js"
   },
   {
     "revision": "574fd0b50367f886d359e8264938fc37",
@@ -72,6 +72,10 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Thin.7500519d.woff"
   },
   {
+    "revision": "3b813c2ae0d04909a33a18d792912ee7",
+    "url": "/starquiz/static/media/Roboto-Light.3b813c2a.woff"
+  },
+  {
     "revision": "ba3dcd8903e3d0af5de7792777f8ae0d",
     "url": "/starquiz/static/media/Roboto-Regular.ba3dcd89.woff"
   },
@@ -84,18 +88,6 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Bold.dc81817d.woff"
   },
   {
-    "revision": "3b813c2ae0d04909a33a18d792912ee7",
-    "url": "/starquiz/static/media/Roboto-Light.3b813c2a.woff"
-  },
-  {
-    "revision": "94998475f6aea65f558494802416c1cf",
-    "url": "/starquiz/static/media/Roboto-Thin.94998475.ttf"
-  },
-  {
-    "revision": "df7b648ce5356ea1ebce435b3459fd60",
-    "url": "/starquiz/static/media/Roboto-Regular.df7b648c.ttf"
-  },
-  {
     "revision": "46e48ce0628835f68a7369d0254e4283",
     "url": "/starquiz/static/media/Roboto-Light.46e48ce0.ttf"
   },
@@ -104,11 +96,19 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Medium.894a2ede.ttf"
   },
   {
+    "revision": "df7b648ce5356ea1ebce435b3459fd60",
+    "url": "/starquiz/static/media/Roboto-Regular.df7b648c.ttf"
+  },
+  {
+    "revision": "94998475f6aea65f558494802416c1cf",
+    "url": "/starquiz/static/media/Roboto-Thin.94998475.ttf"
+  },
+  {
     "revision": "dd000750f0212dca033b",
     "url": "/starquiz/static/css/2.0b496ebf.chunk.css"
   },
   {
-    "revision": "4b3a4240b59668b0f2e2cd893a6fd6a7",
+    "revision": "6a5e039175641c47874ded80d257faf1",
     "url": "/starquiz/index.html"
   }
 ];
