@@ -7,14 +7,13 @@ const Ranking = () => {
     // ADICIONA UM JOGADOR TEMPORARIO AO PLACAR SEM JOGADORES
     if(players === null){
         players = [{
-            name: 'Felipe Ferreira Silva',
-            score: '300'
+            name: ' ', score: ' '
         }]
     }
     return (
         <div className="container">
             <h1 className="text-center ">StarQuiz!</h1>
-            <h3 className="text-center mt-2">Ranking de Jogadores</h3>
+            <h3 className="text-center mt-2">Ranking das Estrelas</h3>
             {players !== null &&
                 <div className="table-wrapper-scroll-y mt-3 mb-5">
                     <table className="table table-bordered table-striped">
