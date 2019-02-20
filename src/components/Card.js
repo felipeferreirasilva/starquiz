@@ -22,7 +22,7 @@ export class Card extends Component {
 
     // REQUISITA AS IMAGENS DOS CARTOES
     componentDidMount() {
-        // this.getImageToCard(this.props.card)
+        this.getImageToCard(this.props.card)
     }
 
     // UTILIZA API DO GOOGLE PARA PESQUISAR E RETORNAR IMAGENS
