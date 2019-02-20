@@ -22,7 +22,7 @@ class Details extends Component {
         this.onGetFilms(card)
         this.onGetVehicles(card)
         this.onSetHeight(card.height)
-        this.onSetHair(card.hair)
+        this.onSetHair(card.hair_color)
     }
 
     // ATUALIZA O STATE COM O PROP RECEBIDO
@@ -95,8 +95,7 @@ class Details extends Component {
 
     render() {
         return (
-            // CRIA UM ID PARA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID
-            <div className="modal fade" id={`${(this.props.card.name).split(' ')[0]}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+            <div className="modal fade" id={`${(this.props.cardId)}`} tabIndex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">

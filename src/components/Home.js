@@ -6,6 +6,10 @@ import { gameStatus, resetScore } from '../actions'
 
 class Home extends Component {
 
+    componentDidMount(){
+        this.props.dispatch(gameStatus(true))
+    }
+
     // MUDA O STATUS DO JOGO PARA TRUE (INICIA CONTADOR DE TEMPO)
     // RESETA O SCORE PARA ZERO CASO O JOGADOR JA TENHA JOGADO NA MESMA SESSAO
     onClickStart = () => {

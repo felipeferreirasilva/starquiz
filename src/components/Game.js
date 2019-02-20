@@ -11,7 +11,6 @@ export class Game extends Component {
     state = {
         cards: {},
         nextPage: null,
-        previousPage: null,
         // INICIA O COMPONENT COM O LOADING EM TRUE
         loading: true
     }
@@ -31,14 +30,6 @@ export class Game extends Component {
         let nextPage = this.state.nextPage
         if (nextPage !== null) {
             this.getCards(nextPage)
-        }
-    }
-
-    // REQUISITA OS 10 PERSONAGEM DA PAGINA ANTERIOR PASSANDO A URL ARMAZENADA NO STATE previousPage
-    onClickPreviousPage = () => {
-        let previousPage = this.state.previousPage
-        if (previousPage !== null) {
-            this.getCards(previousPage)
         }
     }
 
@@ -72,16 +63,15 @@ export class Game extends Component {
                                         <hr />
                                         <div className="row">
                                             {Object.keys(this.state.cards).length > 0 &&
-                                                this.state.cards.map(card => (
-                                                    <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card} /></div>
+                                                this.state.cards.map((card, index) => (
+                                                    <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card} cardId={`md${index}`} /></div>
                                                 ))
                                             }
                                         </div>
                                         <hr />
                                         <nav>
                                             <ul className="pagination justify-content-center pagination-lg">
-                                                <li className={`page-item ${this.state.previousPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickPreviousPage}>Anterior</button></li>
-                                                <li className={`page-item ${this.state.nextPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickNextPage}>Proximo</button></li>
+                                                <button className={`btn btn-light btn-lg btn-block ${this.state.nextPage === null && 'disabled'}`} onClick={this.onClickNextPage}>Carregar Mais</button>
                                             </ul>
                                         </nav>
                                     </div>

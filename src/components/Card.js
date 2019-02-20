@@ -6,7 +6,7 @@ import { updateScore } from '../actions'
 import Details from './Details'
 import Spinner from './Spinner'
 
-class Card extends Component {
+export class Card extends Component {
     state = {
         cardImage: {
             thumbnail: '',
@@ -14,8 +14,9 @@ class Card extends Component {
         },
         userGuess: '',
         showInput: false,
-        cardVisibility: 'visible',
+        cardVisibility: true,
         clickedDetails: false,
+        newClasses: '',
         // INICIA O COMPONENTE COM O LOADING EM TRUE
         loading: true
     }
@@ -57,15 +58,18 @@ class Card extends Component {
         let clickedDetails = this.state.clickedDetails
         if (userGuess !== '') {
             if (cardName === userGuess) {
+                this.addNewClasses(true)
                 if (clickedDetails) {
                     this.props.dispatch(updateScore(5))
                 } else {
                     this.props.dispatch(updateScore(10))
                 }
+            } else {
+                this.addNewClasses(false)
             }
+
             this.setState({
-                showInput: false,
-                cardVisibility: 'hidden'
+                showInput: false
             })
         }
     }
@@ -84,6 +88,19 @@ class Card extends Component {
         })
     }
 
+    // ADICIONA CLASSES AO CARTAO APOS USUARIO ENVIAR O PALPITE
+    addNewClasses = (status) => {
+        if (status) {
+            this.setState({
+                newClasses: `mask flex-center rgba-green-light disabled`
+            })
+        } else {
+            this.setState({
+                newClasses: `mask flex-center rgba-red-light disabled`
+            })
+        }
+    }
+
     render() {
         return (
             <div>
@@ -91,9 +108,9 @@ class Card extends Component {
                 {this.state.loading ? (
                     <Spinner />
                 ) : (
+
                         <div>
-                            {/* OBSERVA O STATE cardVisibility PARA MOSTRAR OU ESCONDER O CARTAO */}
-                            <div className="card container mb-3 view overlay zoom" style={{ width: "16em", visibility: `${this.state.cardVisibility}` }}>
+                            <div className={`card container mb-3 view overlay zoom ${this.state.newClasses}`} style={style.card}>
                                 <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
                                 <div className="card-body">
                                     <div className="">
@@ -108,14 +125,13 @@ class Card extends Component {
                                         ) : (
                                                 <button href="#" className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
                                             )}
-                                        {/* CRIA UM ID PRA O MODAL UTILIZANDO A PRIMEIRA PARTE DO NOME DO PERSONAGEM COMO ID */}
-                                        <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.card.name).split(' ')[0]}`} onClick={this.onClickDetails}>Detalhes</button>
+                                        <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.cardId)}`} onClick={this.onClickDetails}>Detalhes</button>
                                     </div>
                                 </div>
                             </div>
 
                             {/* MODAL DETALHES */}
-                            <Details card={this.props.card} cardImage={this.state.cardImage.image} />
+                            <Details card={this.props.card} cardImage={this.state.cardImage.image} cardId={this.props.cardId} />
                         </div>
                     )}
             </div>
@@ -127,6 +143,9 @@ const style = {
     cardImage: {
         maxWeight: 110,
         maxHeight: 110
+    },
+    card: {
+        width: "16em"
     }
 }
 
