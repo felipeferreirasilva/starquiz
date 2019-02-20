@@ -18,17 +18,34 @@ describe('<Card />', () => {
         expect(wrapper.find(Spinner).length).toBe(1)
     })
 
-    it('RENDER div .card QUANDO state.loading=false E state.cardVisibility=true', () => {
+    it('RENDER div #card QUANDO state.loading=false', () => {
         wrapper.setState({ loading: false })
         wrapper.setProps({ card: { name: 'card' } })
-        expect(wrapper.find('.card').length).toBe(1)
+        expect(wrapper.find('#card').length).toBe(1)
     })
 
-    it('NOT RENDER div .card QUANDO state.loading=false E state.cardVisibility=hidden', () => {
-        wrapper.setState({ loading: false, cardVisibility: false })
+    it('RENDER guess input QUANDO state.loading=false E state.showInput=true', () => {
+        wrapper.setState({ loading: false, showInput: true })
         wrapper.setProps({ card: { name: 'card' } })
-        
-
-        expect(wrapper.find('#card').length).toBe(0)
+        expect(wrapper.find('input').length).toBe(1)
     })
+
+    it('NOT RENDER guess input QUANDO state.loading=false E state.showInput=false', () => {
+        wrapper.setState({ loading: false, showInput: false })
+        wrapper.setProps({ card: { name: 'card' } })
+        expect(wrapper.find('input').length).toBe(0)
+    })
+
+    it('RENDER BTN.advinhar E BTN.detalhes QUANDO state.loading=false E state.showInput=false', () => {
+        wrapper.setState({ loading: false, showInput: false })
+        wrapper.setProps({ card: { name: 'card' } })
+        expect(wrapper.find('button').length).toBe(2)
+    })
+
+    it('RENDER BTN.detalhes E BTN.ok QUANDO state.loading=false E state.showInput=true', () => {
+        wrapper.setState({ loading: false, showInput: true })
+        wrapper.setProps({ card: { name: 'card' } })
+        expect(wrapper.find('button').length).toBe(2)
+    })
+
 })
