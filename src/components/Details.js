@@ -118,19 +118,19 @@ class Details extends Component {
                             {this.state.loading ? (
                                 <Spinner />
                             ) : (
-                                    <div>
-                                        <img src={this.props.cardImage} className="card-img-top img-thumbnail mb-3" alt="" style={style.cardImage} />
-                                        <h6><strong>Especie: </strong>{this.state.species.map(specie => <span key={specie}>{specie}, </span>)}</h6>
-                                        <h6><strong>Altura: </strong>{this.state.height}</h6>
-                                        <h6><strong>Cabelo: </strong>{this.state.hair}</h6>
-                                        <h6><strong>Planeta: </strong>{this.state.homeworld}</h6>
-                                        <h6><strong>Filmes: </strong>{this.state.films.map(film => <span key={film}>{film}, </span>)}</h6>
-                                        <h6><strong>Veiculos: </strong>{this.state.vehicles.map(vehicle => <span key={vehicle}>{vehicle}, </span>)}</h6>
+                                    <div id="details">
+                                        <img id="cardImg" src={this.props.cardImage} className="card-img-top img-thumbnail mb-3" alt="" style={style.cardImage} />
+                                        <h6 id="cardSpecies"><strong>Especie: </strong>{this.state.species.map(specie => <span key={specie}>{specie}, </span>)}</h6>
+                                        <h6 id="cardHeight"><strong>Altura: </strong>{this.state.height}</h6>
+                                        <h6 id="cardHair"><strong>Cabelo: </strong>{this.state.hair}</h6>
+                                        <h6 id="cardHomeworld"><strong>Planeta: </strong>{this.state.homeworld}</h6>
+                                        <h6 id="cardFilms"><strong>Filmes: </strong>{this.state.films.map(film => <span key={film}>{film}, </span>)}</h6>
+                                        <h6 id="cardVehicles"><strong>Veiculos: </strong>{this.state.vehicles.map(vehicle => <span key={vehicle}>{vehicle}, </span>)}</h6>
                                     </div>
                                 )}
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
+                            <button id="close"type="button" className="btn btn-dark" data-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
