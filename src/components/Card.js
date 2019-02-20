@@ -14,7 +14,6 @@ export class Card extends Component {
         },
         userGuess: '',
         showInput: false,
-        cardVisibility: true,
         clickedDetails: false,
         newClasses: '',
         // INICIA O COMPONENTE COM O LOADING EM TRUE
@@ -108,8 +107,7 @@ export class Card extends Component {
                 {this.state.loading ? (
                     <Spinner />
                 ) : (
-
-                        <div>
+                        <div id="card">
                             <div className={`card container mb-3 view overlay zoom ${this.state.newClasses}`} style={style.card}>
                                 <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
                                 <div className="card-body">
@@ -129,7 +127,6 @@ export class Card extends Component {
                                     </div>
                                 </div>
                             </div>
-
                             {/* MODAL DETALHES */}
                             <Details card={this.props.card} cardImage={this.state.cardImage.image} cardId={this.props.cardId} />
                         </div>
