@@ -12,7 +12,9 @@ export class Game extends Component {
         cards: {},
         nextPage: null,
         // INICIA O COMPONENT COM O LOADING EM TRUE
-        loading: true
+        loading: true,
+        loadingMoreCards: false,
+        loadingMoreCardsNewClasses: ''
     }
 
     componentDidMount() {
@@ -28,8 +30,12 @@ export class Game extends Component {
     // REQUISITA OS 10 PERSONAGEM DA PROXIMA PAGINA PASSANDO A URL ARMAZENADA NO STATE nextPage
     onClickNextPage = () => {
         let nextPage = this.state.nextPage
+        let newClasses = `ml-2 spinner-border spinner-border-sm`
         if (nextPage !== null) {
             this.getCards(nextPage)
+            this.setState({
+                loadingMoreCardsNewClasses: newClasses
+            })
         }
     }
 
@@ -42,7 +48,8 @@ export class Game extends Component {
                     nextPage: response.data.next,
                     previousPage: response.data.previous,
                     // FINALIZA O LOADING AO CARREGAR OS CARTOES INICIAIS
-                    loading: false
+                    loading: false,
+                    loadingMoreCardsNewClasses: ''
                 })
             })
     }
@@ -70,9 +77,9 @@ export class Game extends Component {
                                         </div>
                                         <hr />
                                         <nav>
-                                            <ul className="pagination justify-content-center pagination-lg">
-                                                <button className={`btn btn-light btn-lg btn-block ${this.state.nextPage === null && 'disabled'}`} onClick={this.onClickNextPage}>Carregar Mais</button>
-                                            </ul>
+                                            <button className={`btn btn-light btn-lg btn-block mb-3 ${this.state.nextPage === null && 'disabled'}`} onClick={this.onClickNextPage}>
+                                               Carregar Mais <span className={`${this.state.loadingMoreCardsNewClasses}`}></span>
+                                            </button>
                                         </nav>
                                     </div>
                                 </div>
