@@ -50,6 +50,9 @@ class Details extends Component {
                         species: newSpecies
                     })
                 })
+                .catch(error => {
+                    console.log(error)
+                })
         ))
     }
 
@@ -60,6 +63,9 @@ class Details extends Component {
                 this.setState({
                     homeworld: response.data.name
                 })
+            })
+            .catch(error => {
+                console.log(error)
             })
     }
 
@@ -73,6 +79,9 @@ class Details extends Component {
                     this.setState({
                         vehicles: newVehicles
                     })
+                })
+                .catch(error => {
+                    console.log(error)
                 })
         ))
     }
@@ -89,6 +98,9 @@ class Details extends Component {
                         // FINALIZA O LOADING AO CARREGAR A REQUISIÇAO MAIS PESADA (ARRAY DE FILMES)
                         loading: false
                     })
+                })
+                .catch(error => {
+                    console.log(error)
                 })
         ))
     }
