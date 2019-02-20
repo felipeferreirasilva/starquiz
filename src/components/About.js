@@ -4,7 +4,7 @@ const About = () => {
     return (
         <div className="container mt-2 mb-4">
             <div className="jumbotron-fluid" style={style.jumbotron}>
-                <h3 className="display-4">Hey, player!</h3>
+                <h1><strong>About</strong></h1>
                 <p className="lead mt-3">StarQuiz é um jogo onde você deve testar os seus conhecimentos sobre os personagens da franquia Star Wars.</p>
                 <hr className="my-4" />
                 <h3 className="mt-2">Como Jogar?</h3>
