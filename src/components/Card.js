@@ -17,12 +17,12 @@ export class Card extends Component {
         clickedDetails: false,
         newClasses: '',
         // INICIA O COMPONENTE COM O LOADING EM TRUE
-        loading: true
+        loading: false
     }
 
     // REQUISITA AS IMAGENS DOS CARTOES
     componentDidMount() {
-        this.getImageToCard(this.props.card)
+        // this.getImageToCard(this.props.card)
     }
 
     // UTILIZA API DO GOOGLE PARA PESQUISAR E RETORNAR IMAGENS
@@ -121,7 +121,7 @@ export class Card extends Component {
                                                 </div>
                                             </div>
                                         ) : (
-                                                <button href="#" className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
+                                                <button className="btn btn-light btn-block mb-2" onClick={this.onPressGuess}>Advinhar</button>
                                             )}
                                         <button className="btn btn-dark btn-block" data-toggle="modal" data-target={`#${(this.props.cardId)}`} onClick={this.onClickDetails}>Detalhes</button>
                                     </div>
