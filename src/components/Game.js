@@ -7,7 +7,7 @@ import Timer from './Timer'
 import GameOver from './GameOver'
 import Spinner from './Spinner'
 
-class Game extends Component {
+export class Game extends Component {
     state = {
         cards: {},
         nextPage: null,
@@ -63,26 +63,28 @@ class Game extends Component {
                     <Spinner />
                 ) : (
                         <div>
-                            <Timer />
+
                             {/* SE O STATUS DO JOGO FOR TRUE, (TEMPO DISPONIVEL) EXIBE OS CARTOES */}
                             {this.props.game.status ? (
-                                <div className="container-fluid">
-                                    <hr />
-                                    <div className="row">
-                                        {Object.keys(this.state.cards).length > 0 &&
-                                            this.state.cards.map(card => (
-                                                <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card}/></div>
-                                            ))
-                                        }
+                                <div>
+                                    <Timer />
+                                    <div className="container-fluid">
+                                        <hr />
+                                        <div className="row">
+                                            {Object.keys(this.state.cards).length > 0 &&
+                                                this.state.cards.map(card => (
+                                                    <div key={card.name} className="col-lg-3 col-md-4 col-sm-6"><Card card={card} /></div>
+                                                ))
+                                            }
+                                        </div>
+                                        <hr />
+                                        <nav>
+                                            <ul className="pagination justify-content-center pagination-lg">
+                                                <li className={`page-item ${this.state.previousPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickPreviousPage}>Anterior</button></li>
+                                                <li className={`page-item ${this.state.nextPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickNextPage}>Proximo</button></li>
+                                            </ul>
+                                        </nav>
                                     </div>
-                                    <hr />
-                                    <nav>
-                                        <ul className="pagination justify-content-center pagination-lg">
-                                            <li className={`page-item ${this.state.previousPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickPreviousPage}>Anterior</button></li>
-                                            <li className={`page-item ${this.state.nextPage === null && 'disabled'}`}><button className="page-link" onClick={this.onClickNextPage}>Proximo</button></li>
-                                        </ul>
-                                    </nav>
-
                                 </div>
                                 // SE O STATUS DO JOGO FOR FALSE, (TEMPO ACABOU), EXIBE O COMPONENT GAMEOVER
                             ) : (
