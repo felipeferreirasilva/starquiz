@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Regular.2751ee43.woff2"
   },
   {
-    "revision": "295e68f8948424b99348",
+    "revision": "a3cf2ee2717680396d96",
     "url": "/starquiz/static/css/main.dcf73744.chunk.css"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = [
     "url": "/starquiz/static/js/2.dd000750.chunk.js"
   },
   {
-    "revision": "11911410dca2de148f30954eb2fd5eab",
-    "url": "/starquiz/static/media/arrow_left.11911410.svg"
-  },
-  {
     "revision": "8ef6a08cdc1154920165680a4edde771",
     "url": "/starquiz/static/media/arrow_right.8ef6a08c.svg"
+  },
+  {
+    "revision": "11911410dca2de148f30954eb2fd5eab",
+    "url": "/starquiz/static/media/arrow_left.11911410.svg"
   },
   {
     "revision": "dfe56a876d0282555d1e2458e278060f",
@@ -56,8 +56,8 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Light.69f8a061.woff2"
   },
   {
-    "revision": "295e68f8948424b99348",
-    "url": "/starquiz/static/js/main.295e68f8.chunk.js"
+    "revision": "a3cf2ee2717680396d96",
+    "url": "/starquiz/static/js/main.a3cf2ee2.chunk.js"
   },
   {
     "revision": "574fd0b50367f886d359e8264938fc37",
@@ -68,12 +68,12 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Bold.39b2c303.woff2"
   },
   {
-    "revision": "7500519de3d82e33d1587f8042e2afcb",
-    "url": "/starquiz/static/media/Roboto-Thin.7500519d.woff"
-  },
-  {
     "revision": "3b813c2ae0d04909a33a18d792912ee7",
     "url": "/starquiz/static/media/Roboto-Light.3b813c2a.woff"
+  },
+  {
+    "revision": "7500519de3d82e33d1587f8042e2afcb",
+    "url": "/starquiz/static/media/Roboto-Thin.7500519d.woff"
   },
   {
     "revision": "ba3dcd8903e3d0af5de7792777f8ae0d",
@@ -88,27 +88,27 @@ self.__precacheManifest = [
     "url": "/starquiz/static/media/Roboto-Bold.dc81817d.woff"
   },
   {
-    "revision": "46e48ce0628835f68a7369d0254e4283",
-    "url": "/starquiz/static/media/Roboto-Light.46e48ce0.ttf"
-  },
-  {
-    "revision": "894a2ede85a483bf9bedefd4db45cdb9",
-    "url": "/starquiz/static/media/Roboto-Medium.894a2ede.ttf"
+    "revision": "94998475f6aea65f558494802416c1cf",
+    "url": "/starquiz/static/media/Roboto-Thin.94998475.ttf"
   },
   {
     "revision": "df7b648ce5356ea1ebce435b3459fd60",
     "url": "/starquiz/static/media/Roboto-Regular.df7b648c.ttf"
   },
   {
-    "revision": "94998475f6aea65f558494802416c1cf",
-    "url": "/starquiz/static/media/Roboto-Thin.94998475.ttf"
+    "revision": "894a2ede85a483bf9bedefd4db45cdb9",
+    "url": "/starquiz/static/media/Roboto-Medium.894a2ede.ttf"
+  },
+  {
+    "revision": "46e48ce0628835f68a7369d0254e4283",
+    "url": "/starquiz/static/media/Roboto-Light.46e48ce0.ttf"
   },
   {
     "revision": "dd000750f0212dca033b",
     "url": "/starquiz/static/css/2.0b496ebf.chunk.css"
   },
   {
-    "revision": "6a5e039175641c47874ded80d257faf1",
+    "revision": "d809fdf2ab119cd0228051145c9a4c4f",
     "url": "/starquiz/index.html"
   }
 ];
