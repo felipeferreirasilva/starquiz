@@ -16,11 +16,12 @@ export class Game extends Component {
         loading: true
     }
 
-    // REQUISITA OS 10 PRIMEIROS PERSONAGENS CADASTRADOS NA API
     componentDidMount() {
         if (this.props.game.status) {
+            // REQUISITA OS 10 PRIMEIROS PERSONAGENS CADASTRADOS NA API
             this.getCards(URL)
         } else {
+            // GARANTE QUE A PAGINA NAO SEJA ACESSADA SEM QUE O BOTAO DE INICIAR GAME TENHA SIDO CLICADO
             this.props.history.push('/')
         }
     }
@@ -63,7 +64,6 @@ export class Game extends Component {
                     <Spinner />
                 ) : (
                         <div>
-
                             {/* SE O STATUS DO JOGO FOR TRUE, (TEMPO DISPONIVEL) EXIBE OS CARTOES */}
                             {this.props.game.status ? (
                                 <div>
