@@ -142,7 +142,8 @@ const style = {
         maxHeight: 110
     },
     card: {
-        width: "16em"
+        width: "16em",
+        backgroundColor: '#F2F2F2'
     }
 }
 
