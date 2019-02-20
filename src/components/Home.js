@@ -6,8 +6,9 @@ import { gameStatus, resetScore } from '../actions'
 
 class Home extends Component {
 
+    // RESETA STATUS DO JOGO CASO O JOGADOR JA TENHA JOGADO NA MESMA SESSAO
     componentDidMount(){
-        this.props.dispatch(gameStatus(true))
+        this.props.dispatch(gameStatus(false))
     }
 
     // MUDA O STATUS DO JOGO PARA TRUE (INICIA CONTADOR DE TEMPO)
@@ -21,7 +22,7 @@ class Home extends Component {
         return (
             <div className="container-fluid">
                 <div className="text-center">
-                    <div><img src={LOGO} alt="darth vader banner" className="img-fluid mt-3 animated zoomIn" style={style.logo}></img></div>
+                    <img src={LOGO} alt="darth vader banner" className="img-fluid mt-3 animated zoomIn" style={style.logo}></img>
                     <h2 className="mt-5">StarQuiz!</h2>
                     <Link to="/game" className="btn btn-light btn-lg mt-3" onClick={this.onClickStart}>Jogar!</Link>
                 </div>
