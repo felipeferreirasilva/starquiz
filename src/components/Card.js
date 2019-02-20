@@ -15,7 +15,7 @@ export class Card extends Component {
         userGuess: '',
         showInput: false,
         clickedDetails: false,
-        newClasses: '',
+        newClasses: 'rgba-grey-slight',
         // INICIA O COMPONENTE COM O LOADING EM TRUE
         loading: true
     }
@@ -145,8 +145,7 @@ const style = {
         maxHeight: 110
     },
     card: {
-        width: "16em",
-        backgroundColor: '#F2F2F2'
+        width: "16em"
     }
 }
 
