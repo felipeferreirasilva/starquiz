@@ -8,13 +8,18 @@ import Spinner from './Spinner'
 
 export class Card extends Component {
     state = {
+        // ARMAZENA A IMAGEM RECEBIDA PELA API DO GOOGLE IMAGENS
         cardImage: {
             thumbnail: '',
             image: ''
         },
+        // ARMAZENA O PALPITE DO USUARIO
         userGuess: '',
+        // EXIBE O CAMPO PARA DIGITAR O PALPITE
         showInput: false,
+        // ARMAZENA SE O USUARIO CLICOU EM DETALHES (PARA DIMINUIR 5 PONTOS CASO ELE ACERTE)
         clickedDetails: false,
+        // CLASSES QUE SERAO ADICIONADAS AO CARD
         newClasses: 'rgba-grey-slight',
         // INICIA O COMPONENTE COM O LOADING EM TRUE
         loading: true
@@ -58,18 +63,26 @@ export class Card extends Component {
         let userGuess = this.state.userGuess.toUpperCase()
         let cardName = this.props.card.name.toUpperCase()
         let clickedDetails = this.state.clickedDetails
+        // VERIFICA SE O USUARIO DIGITOU ALGO NO CAMPO
         if (userGuess !== '') {
+            // VERIFICA SE O USUARIO ACERTOU
             if (cardName === userGuess) {
+                // CHAMA A FUNÇAO QUE MUDA O BACKGROUND DO CARTAO E O DESABILITA
                 this.addNewClasses(true)
+                // VERIFICA SE O USUARIO CLICOU NO BOTAO DETALHES
                 if (clickedDetails) {
+                    //ATUALIZA O SCORE COM 5 PONTOS
                     this.props.dispatch(updateScore(5))
                 } else {
+                    // ATUALIZA O SCORE COM 10 PONTOS
                     this.props.dispatch(updateScore(10))
                 }
             } else {
+                // CHAMA A FUNÇAO QUE MUDA O BACKGROUND DO CARTAO E O DESABILITA
                 this.addNewClasses(false)
             }
 
+            // ESCONDE O INPUT
             this.setState({
                 showInput: false
             })
@@ -92,10 +105,13 @@ export class Card extends Component {
 
     // ADICIONA CLASSES AO CARTAO APOS USUARIO ENVIAR O PALPITE
     addNewClasses = (status) => {
+        // VERIFICA SE O USUARIO ACERTOU OU ERROU
+        // SE ACERTOU MUDA O BACKGROUND PARA VERDE E DESABILITA O BOTAO
         if (status) {
             this.setState({
                 newClasses: `mask flex-center rgba-green-light disabled`
             })
+            // SE ERROU MUDA O BACKGROUND PARA VERMELHO E DESABILITA O BOTAO
         } else {
             this.setState({
                 newClasses: `mask flex-center rgba-red-light disabled`
@@ -110,8 +126,8 @@ export class Card extends Component {
                 {this.state.loading ? (
                     <Spinner />
                 ) : (
-                        <div id="card">
-                            <div className={`card container mb-3 view overlay zoom ${this.state.newClasses}`} style={style.card}>
+                        <div>
+                            <div id="card" className={`card container mb-3 view overlay zoom ${this.state.newClasses}`} style={style.card}>
                                 <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
                                 <div className="card-body">
                                     <div className="">
