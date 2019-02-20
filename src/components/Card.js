@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import GoogleImages from 'google-images';
 import { CSE_ID, API_KEY } from '../utils/googleImages'
 import { connect } from 'react-redux'
 import { updateScore } from '../actions'
+import GoogleImages from 'google-images';
 import Details from './Details'
 import Spinner from './Spinner'
 
@@ -133,7 +133,7 @@ export class Card extends Component {
                             <div id="card" className={`card container mb-3 view overlay zoom ${this.state.newClasses}`} style={style.card}>
                                 <img src={this.state.cardImage.image} className="card-img-top mt-3 img-fluid z-depth-1 border" alt="" style={style.cardImage} />
                                 <div className="card-body">
-                                    <div className="">
+                                    <div>
                                         {/* EXIBE O INPUT DE PALPITE QUANDO O USUARIO CLICA EM ADVINHAR */}
                                         {this.state.showInput ? (
                                             <div className="input-group mb-3">
@@ -171,4 +171,5 @@ const style = {
 const mapStateToProps = state => {
     return state
 }
+
 export default connect(mapStateToProps)(Card)
