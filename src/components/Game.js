@@ -15,8 +15,6 @@ export class Game extends Component {
         nextPage: null,
         // INICIA O COMPONENT COM O LOADING EM TRUE
         loading: true,
-        // VERIFICA SE O BOTAO CARREGAR MAIS FOI CLICADO
-        loadingMoreCards: false,
         // STATE VAI RECEBER AS CLASSES DO SPINNER PARA ADICIONAR AO BOTAO CARREGAR MAIS
         loadingMoreCardsNewClasses: ''
     }
@@ -37,7 +35,7 @@ export class Game extends Component {
         // SETA A URL DA API PARA A PROXIMA PAGINA DE PERSONAGENS
         let nextPage = this.state.nextPage
         // CRIA VARIAVEL COM CLASSES DO BOTAO SPINNER
-        let newClasses = `ml-2 spinner-border spinner-border-sm`
+        let newClasses = `ml-2 spinner-border spinner-border-sm disabled`
         if (nextPage !== null) {
             // CHAMA API PASSANDO URL DA PROXIMA PAGINA
             this.getCards(nextPage)
@@ -92,7 +90,10 @@ export class Game extends Component {
                                         </div>
                                         <hr />
                                         <nav>
-                                            <button id="moreCards" className={`btn btn-light btn-lg btn-block mb-3 ${this.state.nextPage === null && 'disabled'}`} onClick={this.onClickNextPage}>
+                                            <button
+                                                id="moreCards"
+                                                className={`btn btn-light btn-lg btn-block mb-3 ${this.state.nextPage === null && 'disabled'}`}
+                                                onClick={this.onClickNextPage}>
                                                 Carregar Mais <span className={`${this.state.loadingMoreCardsNewClasses}`}></span>
                                             </button>
                                         </nav>
