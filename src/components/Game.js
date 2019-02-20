@@ -80,7 +80,7 @@ export class Game extends Component {
                                         </div>
                                         <hr />
                                         <nav>
-                                            <button className={`btn btn-light btn-lg btn-block mb-3 ${this.state.nextPage === null && 'disabled'}`} onClick={this.onClickNextPage}>
+                                            <button id="moreCards" className={`btn btn-light btn-lg btn-block mb-3 ${this.state.nextPage === null && 'disabled'}`} onClick={this.onClickNextPage}>
                                                Carregar Mais <span className={`${this.state.loadingMoreCardsNewClasses}`}></span>
                                             </button>
                                         </nav>
