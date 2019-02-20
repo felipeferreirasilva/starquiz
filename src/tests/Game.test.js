@@ -37,9 +37,9 @@ describe('<Game />', () => {
         expect(wrapper.find(Card).length).toBe(1)
     })
 
-    it('RENDER BOTOES QUANDO state.loading=false E props.game.status=true E state.cards > 0', () => {
-        wrapper.setState({ loading: false, cards: [{ name: 'card' }] })
-        expect(wrapper.find('button').length).toBe(1)
+    it('RENDER #moreCards QUANDO state.loading=false E props.game.status=true', () => {
+        wrapper.setState({ loading: false })
+        expect(wrapper.find('#moreCards').length).toBe(1)
     })
 
     it('RENDER GAMEOVER QUANDO state.loading=false E props.game.status=false', () => {

@@ -5,6 +5,7 @@ Enzyme.configure({ adapter: new Adapter() })
 
 import { Card } from '../components/Card'
 import Spinner from '../components/Spinner'
+import Details from '../components/Details'
 
 describe('<Card />', () => {
     let wrapper;
@@ -46,6 +47,12 @@ describe('<Card />', () => {
         wrapper.setState({ loading: false, showInput: true })
         wrapper.setProps({ card: { name: 'card' } })
         expect(wrapper.find('button').length).toBe(2)
+    })
+
+    it('RENDER Details QUANDO state.loading=false', () => {
+        wrapper.setState({ loading: false })
+        wrapper.setProps({ card: { name: 'card' } })
+        expect(wrapper.find(Details).length).toBe(1)
     })
 
 })

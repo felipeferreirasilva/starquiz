@@ -4,7 +4,6 @@ import Adapter from 'enzyme-adapter-react-16'
 Enzyme.configure({ adapter: new Adapter() })
 
 import { Nav } from '../components/Nav'
-import { Link } from 'react-router-dom'
 
 describe('<Nav />', () => {
     let wrapper;
@@ -13,7 +12,23 @@ describe('<Nav />', () => {
         wrapper = shallow(<Nav location={{ pathname: '/' }} />)
     })
 
-    it('RENDER 4 LINKS, LOGO, HOME, ABOUT, RANKING', () => {
-        expect(wrapper.find(Link).length).toBe(4)
+    it('RENDER LINK LOGO', () => {
+        expect(wrapper.find('#linkLogo').length).toBe(1)
+    })
+
+    it('RENDER LINK HOME', () => {
+        expect(wrapper.find('#linkHome').length).toBe(1)
+    })
+    
+    it('RENDER LINK ABOUT', () => {
+        expect(wrapper.find('#linkAbout').length).toBe(1)
+    })
+
+    it('RENDER LINK RANKING', () => {
+        expect(wrapper.find('#linkRanking').length).toBe(1)
+    })
+
+    it('RENDER LOGO', () => {
+        expect(wrapper.find('#logo').length).toBe(1)
     })
 })
