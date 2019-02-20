@@ -73,6 +73,9 @@ export class Card extends Component {
                 if (clickedDetails) {
                     //ATUALIZA O SCORE COM 5 PONTOS
                     this.props.dispatch(updateScore(5))
+                    this.setState({
+                        clickedDetails: false
+                    })
                 } else {
                     // ATUALIZA O SCORE COM 10 PONTOS
                     this.props.dispatch(updateScore(10))
