@@ -39,6 +39,9 @@ export class Card extends Component {
                     loading: false
                 })
             })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     // EXIBE O INPUT PARA DIGITAR O PALPITE DO USUARIO
