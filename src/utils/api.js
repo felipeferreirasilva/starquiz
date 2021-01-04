@@ -1,1 +1,1 @@
-export const URL = "https://swapi.co/api/people/"
+export const URL = "https://swapi.dev/api/people/"
